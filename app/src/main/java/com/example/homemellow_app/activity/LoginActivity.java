@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button mJoinButton;
     private ProgressBar mProgressView;
     private ServiceApi service;
+    Boolean sig_login = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,13 +99,15 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void startLogin(LoginData data) {
+    private boolean startLogin(LoginData data) {
+        boolean sig = false;
         service.userLogin(data).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse result = response.body();
                 Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 showProgress(false);
+                sig = true;
             }
 
             @Override
@@ -128,4 +131,3 @@ public class LoginActivity extends AppCompatActivity {
         mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 }
-

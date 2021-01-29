@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.JoinActivity" />
+        <activity android:name=".activity.StoreActivity" />
     </application>
 
 </manifest>
