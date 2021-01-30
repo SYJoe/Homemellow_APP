@@ -24,6 +24,7 @@ public class StoreActivity extends AppCompatActivity {
     private TextView costText;
     private ImageView itemImg;
     private ServiceApi service;
+    StoreResponse result;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +37,17 @@ public class StoreActivity extends AppCompatActivity {
 
             service = RetrofitClient.getClient().create(ServiceApi.class);
 
-
             loadData(new StoreData());
-
+            System.out.println("store_name :"+result);
+            nameText.setText(result.getName());
+            costText.setText(result.getCost());
         }
 
         private void loadData(StoreData data) {
             service.storeData(data).enqueue(new Callback<StoreResponse>() {
                 @Override
                 public void onResponse(Call<StoreResponse> call, Response<StoreResponse> response) {
-                    StoreResponse result = response.body();
-                    //Toast.makeText(StoreActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                    result = response.body();
                 }
 
                 @Override

@@ -6,10 +6,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class StoreResponse {
 
-    @SerializedName("name")
+    @SerializedName("key = name")
     public static String name;
 
-    @SerializedName("cost")
+    @SerializedName("key = cost")
     public static String cost;
 
     @SerializedName("img")

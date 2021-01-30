@@ -19,6 +19,8 @@ import com.example.homemellow_app.network.ServiceApi;
 import com.example.homemellow_app.data.LoginData;
 import com.example.homemellow_app.data.LoginResponse;
 
+import java.util.regex.MatchResult;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -99,15 +101,21 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private boolean startLogin(LoginData data) {
-        boolean sig = false;
+
+    private void startLogin(LoginData data) {
         service.userLogin(data).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse result = response.body();
                 Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 showProgress(false);
-                sig = true;
+
+                System.out.println("code : " + result.getCode());
+                if(result.getCode() == 200)
+                {
+                    Intent intent = new Intent(getApplicationContext(), StoreActivity.class);
+                    startActivity(intent);
+                }
             }
 
             @Override
