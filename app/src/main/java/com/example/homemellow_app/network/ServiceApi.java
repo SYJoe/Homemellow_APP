@@ -9,7 +9,9 @@ import com.example.homemellow_app.data.StoreResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ServiceApi {
     @POST("/users/login")
@@ -18,6 +20,6 @@ public interface ServiceApi {
     @POST("/users/register")
     Call<JoinResponse> userJoin(@Body JoinData data);
 
-    @POST("/store/index")
-    Call<StoreResponse> storeData(@Body StoreData data);
+    @GET("/store/index")
+    Call<StoreResponse>getIndex();
 }

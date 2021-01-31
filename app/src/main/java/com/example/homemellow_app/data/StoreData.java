@@ -9,4 +9,20 @@ public class StoreData {
 
     @SerializedName("cost")
     String itemCost;
+
+    public void setItemCost(String itemCost) {
+        this.itemCost = itemCost;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public String getItemCost() {
+        return itemCost;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
 }

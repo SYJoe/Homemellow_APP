@@ -1,39 +1,43 @@
 package com.example.homemellow_app.data;
 
-import android.media.Image;
-
+import java.util.List;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class StoreResponse {
 
-    @SerializedName("key = name")
-    public static String name;
-
-    @SerializedName("key = cost")
-    public static String cost;
-
-    @SerializedName("img")
-    public static Image img;
-
     @SerializedName("message")
+    @Expose
     private String message;
-
-    public static String getName()
-    {
-        return name;
-    }
-
-    public static String getCost()
-    {
-        return cost;
-    }
-
-    public static Image getImg()
-    {
-        return img;
-    }
+    @SerializedName("name")
+    @Expose
+    private List<String> name = null;
+    @SerializedName("cost")
+    @Expose
+    private List<Integer> cost = null;
 
     public String getMessage() {
         return message;
     }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public List<String> getName() {
+        return name;
+    }
+
+    public void setName(List<String> name) {
+        this.name = name;
+    }
+
+    public List<Integer> getCost() {
+        return cost;
+    }
+
+    public void setCost(List<Integer> cost) {
+        this.cost = cost;
+    }
+
 }

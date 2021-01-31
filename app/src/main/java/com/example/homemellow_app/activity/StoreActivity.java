@@ -15,6 +15,8 @@ import com.example.homemellow_app.data.StoreResponse;
 import com.example.homemellow_app.network.RetrofitClient;
 import com.example.homemellow_app.network.ServiceApi;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,7 +26,7 @@ public class StoreActivity extends AppCompatActivity {
     private TextView costText;
     private ImageView itemImg;
     private ServiceApi service;
-    StoreResponse result;
+    StoreResponse data;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -37,23 +39,25 @@ public class StoreActivity extends AppCompatActivity {
 
             service = RetrofitClient.getClient().create(ServiceApi.class);
 
-            loadData(new StoreData());
-            System.out.println("store_name :"+result);
-            nameText.setText(result.getName());
-            costText.setText(result.getCost());
+            loadData();
+            nameText.setText(data.getName());
+            costText.setText(data.getCost());
         }
 
-        private void loadData(StoreData data) {
-            service.storeData(data).enqueue(new Callback<StoreResponse>() {
+        private void loadData() {
+            service.getIndex().enqueue(new Callback<StoreResponse>() {
                 @Override
                 public void onResponse(Call<StoreResponse> call, Response<StoreResponse> response) {
-                    result = response.body();
+                    System.out.println(response.body().getName());
+                    System.out.println(response.body().getCost());
+
+                    data.setName(response.body().getName());
+                    data.setCost(response.body().getCost());
                 }
 
                 @Override
                 public void onFailure(Call<StoreResponse> call, Throwable t) {
-                    Toast.makeText(StoreActivity.this, "네트워크 에러 발생", Toast.LENGTH_SHORT).show();
-                    Log.e("네트워크 에러 발생", t.getMessage());
+
                 }
             });
         }
