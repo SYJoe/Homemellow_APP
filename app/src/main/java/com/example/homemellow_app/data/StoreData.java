@@ -3,26 +3,14 @@ package com.example.homemellow_app.data;
 import com.google.gson.annotations.SerializedName;
 
 public class StoreData {
-
     @SerializedName("name")
-    String itemName;
+    CharSequence itemName;
 
     @SerializedName("cost")
-    String itemCost;
+    CharSequence itemCost;
 
-    public void setItemCost(String itemCost) {
-        this.itemCost = itemCost;
-    }
-
-    public void setItemName(String itemName) {
+    public StoreData(String itemName, String itemCost) {
         this.itemName = itemName;
-    }
-
-    public String getItemCost() {
-        return itemCost;
-    }
-
-    public String getItemName() {
-        return itemName;
+        this.itemCost = itemCost;
     }
 }
